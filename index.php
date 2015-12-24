@@ -1,19 +1,20 @@
 <?php
-  $data = json_decode(file_get_contents('php://input'));
-  file_put_contents(
-    'last/index.html',
-    json_encode(
-      array(
-        'test'    =>  $data['ref'],
-        'GET'     =>  $_GET,
-        'POST'    =>  $_POST,
-        'content' =>  $data,
-        'date'    =>  time(),
-        'server'  =>  $_SERVER
-      )
-    )
-  );
   try {
+    $data = json_decode(file_get_contents('php://input'));
+    file_put_contents(
+      'last/index.html',
+      json_encode(
+        array(
+          'test'    =>  $data['ref'],
+          'GET'     =>  $_GET,
+          'POST'    =>  $_POST,
+          'content' =>  $data,
+          'date'    =>  time(),
+          'server'  =>  $_SERVER
+        )
+      )
+    );
+  
     if(isset($data) && $data['ref'] == 'refs/heads/master'){
       $error = false;
       try {
