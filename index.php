@@ -15,6 +15,7 @@
   );
   $data = json_decode(file_get_contents('php://input'));
   if(isset($data) && $data['ref'] == 'refs/heads/master'){
+    $error = false;
     try {
       exec('git clone '.$data['repository']['clone_url'].' ts'.time());
     } catch (Exception $e) {
@@ -27,10 +28,12 @@
           )
         )
       );
-      exit();
+      $error  = true;
     }
-    echo '{"response":{"code":200,"status":"OK"}}';
-    exit();
+    if(!$error){
+      echo '{"response":{"code":200,"status":"OK"}}';
+    }
+  } else {
+    echo '{"response":{"code":199,"status":"BAD"}}';
   }
-  echo '{"response":{"code":199,"status":"BAD"}}';
 ?>
