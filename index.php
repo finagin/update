@@ -5,7 +5,7 @@
       'last/index.html',
       json_encode(
         array(
-          'data'    =>  $data['ref'],
+          'data'    =>  $data->{'ref'},
           'GET'     =>  $_GET,
           'POST'    =>  $_POST,
           'content' =>  $data,
