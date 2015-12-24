@@ -5,7 +5,7 @@
       'last/index.html',
       json_encode(
         array(
-          'data'    =>  $data,
+          'data'    =>  $data['ref'],
           'GET'     =>  $_GET,
           'POST'    =>  $_POST,
           'content' =>  $data,
@@ -14,6 +14,7 @@
         )
       )
     );
+    echo json_encode(array('code' =>  200));
   } catch (Exception $e) {
     echo json_encode(
       array(
