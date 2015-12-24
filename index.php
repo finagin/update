@@ -16,7 +16,7 @@
     );
     try {
       if(isset($data) && $data->{'ref'} == 'refs/heads/master'){
-        exec('git clone '.$data->{'repository'}->{'clone_url'}.' ts'.time());
+        exec('git clone '.$data->{'repository'}->{'clone_url'}.' last/ts'.time());
       }
     } catch (Exception $e) {
       echo json_encode(
