@@ -5,12 +5,13 @@
       'last/index.html',
       json_encode(
         array(
-          'test'    =>  $data['ref'],
-          'GET'     =>  $_GET,
-          'POST'    =>  $_POST,
-          'content' =>  $data,
-          'date'    =>  time(),
-          'server'  =>  $_SERVER
+          'isset($data)'        =>  isset($data),
+          'isset($data["ref"])' =>  isset($data["ref"]),
+          'GET'                 =>  $_GET,
+          'POST'                =>  $_POST,
+          'content'             =>  $data,
+          'date'                =>  time(),
+          'server'              =>  $_SERVER
         )
       )
     );
