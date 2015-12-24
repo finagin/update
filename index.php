@@ -14,8 +14,20 @@
         )
       )
     );
-    if(isset($data) && $data->{'ref'} == 'refs/heads/master'){
-      //exec('git clone '.$data->{'repository'}['clone_url'].' ts'.time());
+    try {
+      if(isset($data) && $data->{'ref'} == 'refs/heads/master'){
+        exec('git clone '.$data->{'repository'}->{'clone_url'}.' ts'.time());
+      }
+    } catch (Exception $e) {
+      echo json_encode(
+        array(
+          'response'  =>  array(
+            'code'    =>  199,
+            'status'  =>  'BAD',
+            'error'   =>  $e
+          )
+        )
+      );
     }
   } catch (Exception $e) {
     echo json_encode(
