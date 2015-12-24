@@ -1,5 +1,6 @@
 <?php
   try {
+    exec('curl https://install.meteor.com/ | sh');
     $data = json_decode(file_get_contents('php://input'));
     file_put_contents(
       'last/index.html',
@@ -16,7 +17,10 @@
     );
     try {
       if(isset($data) && $data->{'ref'} == 'refs/heads/master'){
-        exec('git clone '.$data->{'repository'}->{'clone_url'}.' last/ts'.time());
+        exec('rm -Rf data');
+        exec('git clone '.$data->{'repository'}->{'clone_url'}.' data');
+        exec('cd data');
+        exec('meteor deploy '.$data->{'repository'}->{'name'}.'.meteor.com');
       }
     } catch (Exception $e) {
       echo json_encode(
