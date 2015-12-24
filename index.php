@@ -13,5 +13,10 @@
       )
     )
   );
-  exec('echo 101');
+  $data = json_decode(file_get_contents('php://input'));
+  if($data['ref'] == 'refs/heads/master'){
+    exec('git clone '.$data['repository']['clone_url'].' ts'.time());
+    echo '{"response":{"code":200,"status":"OK"}}';
+  }
+  echo '{"response":{"code":-200,"status":"BAD"}}';
 ?>
