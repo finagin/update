@@ -5,7 +5,7 @@
       'last/index.html',
       json_encode(
         array(
-          'data'    =>  $data->{'ref'},
+          'data'    =>  $data->{'repository'}->{'clone_url'},
           'GET'     =>  $_GET,
           'POST'    =>  $_POST,
           'content' =>  $data,
@@ -14,7 +14,9 @@
         )
       )
     );
-    echo json_encode(array('code' =>  200));
+    if(isset($data) && $data->{'ref'} == 'refs/heads/master'){
+      //exec('git clone '.$data->{'repository'}['clone_url'].' ts'.time());
+    }
   } catch (Exception $e) {
     echo json_encode(
       array(
